@@ -22,18 +22,37 @@
 
 function areThereDuplicates(...args) {
 
-    let freqCounter = {}
+    let freqCounterString = {}
+    let freqCounterNumber = {}
+    let duplicate = false
 
     args.forEach(element => {
-        if (freqCounter[element]) {
-            console.log("There are duplicates")
-            return true
+
+        if (typeof(element) == "string") {  // this line
+            freqCounterString[element] ? (freqCounterString[element] += 1) : (freqCounterString[element] = 1)
+
+            if (freqCounterString[element] > 1) {
+                console.log("There are duplicates")
+                return duplicate =  true
+            }
         }
 
-        freqCounter[element] = 1
+        else{
+            freqCounterNumber[element] ? (freqCounterNumber[element] += 1) : (freqCounterNumber[element] = 1)
+
+            if (freqCounterNumber[element] > 1) {
+                console.log("There are duplicates")
+                return duplicate =  true
+            }
+        }
     });
 
-    console.log("There are no duplicates")
+    if (duplicate) {
+        console.log("There are duplicates")
+        return true
+    }
+
+    console.log("There are NO duplicates")
     return false
 }
 
