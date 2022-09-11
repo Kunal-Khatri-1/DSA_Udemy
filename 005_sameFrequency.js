@@ -22,25 +22,42 @@
     // return true
 
 
-function sameFrequency(first, second){
-    first = String(first)
-    second = String(second)
-    console.log("This is first and second string", typeof(first), typeof(second))
-
-    if ( first.length == second.length ) {
-        let freqCounter = {}
-
-        for (let i = 0; i < first.length; i++) {
-            freqCounter[first[i]] ? (freqCounter[first[i]] += 1) : (freqCounter[first[i]] = 1)
-        }
-
-        for (let j = 0; j < second.length; j++) {
-            if (!freqCounter[second[j]]) {
-                return false
+    function sameFrequency(first, second){
+        first = String(first)
+        second = String(second)
+        console.log("This is first and second string", typeof(first), typeof(second))
+    
+        if ( first.length == second.length ) {
+            console.log("strings have same length")
+            
+            let freqCounter = {}
+    
+            for (let i = 0; i < first.length; i++) {
+                freqCounter[first[i]] ? (freqCounter[first[i]] += 1) : (freqCounter[first[i]] = 1)
             }
+            
+            console.log("this is the freqCounter: ", freqCounter)
+    
+            for (let j = 0; j < second.length; j++) {
+                if (!freqCounter[second[j]]) {
+                    console.log("This key was not presen t in the freqCounter: ", freqCounter)
+                    return false
+                }
+                
+                // to take into account for the case 11,12
+                freqCounter[second[j]] -= 1
+            }
+            
+            console.log("The two numbers are anagrams")
+            return true
+        }
+        else{
+            console.log("strings have different lengths")
+            return false
         }
     }
-    else{
-        return false
-    }
-}
+    
+    //sameFrequency(1,11)
+    //sameFrequency(11,11)
+    //sameFrequency(12342234,44222331)
+    sameFrequency(12,11)
