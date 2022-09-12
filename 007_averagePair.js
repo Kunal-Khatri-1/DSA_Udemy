@@ -20,6 +20,7 @@
 
 
 function averagePair(arr, avg){
+    let present = false
     let val = 2 * avg
 
     if (arr.length == 0) {
@@ -30,12 +31,20 @@ function averagePair(arr, avg){
         let j = arr.length - 1
 
         while( i > j ){
+            console.log("i and j ", i, j)
             if (arr[i] + arr[j] > val) {
-                i++
+                console.log("i + j is more than val")
+                j--
             }
             else if (arr[i] + arr[j] < val) {
-                
+                console.log("i + j is less than val")
+                i++
+            }
+            else{
+                console.log("i = j")
+                present = true
             }
         }
     }
+    return present
 }
